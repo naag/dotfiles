@@ -10,6 +10,7 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
+export GOPATH=$HOME/go
 export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
@@ -17,6 +18,10 @@ setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
+
+{{ if eq .chezmoi.os "darwin" -}}
+ulimit -S -n 2048
+{{- end }}
 
 # Use modern completion system
 autoload -Uz compinit
